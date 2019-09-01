@@ -6,10 +6,14 @@ class Figure(Settings):
         self.screen = screen
         self.x = 200
         self.y = 200
-        self.state = "active"
         self.guesses = 0
         self.hangman_color = self.WHITE
 
+    def reset_figure(self):
+        self.hangman_color = self.WHITE
+        self.guesses = 0
+        
+    # draw figure depending on the state
     def draw_figure(self):
         if self.guesses >= 0:
             self.draw_gallows()
@@ -26,7 +30,6 @@ class Figure(Settings):
         if self.guesses >= 6:
             self.draw_right_leg()
             self.hangman_color = self.RED
-
 
     def draw_gallows(self):
         pygame.draw.line(self.screen, self.hangman_color, (130, 80), (250, 80), 3)
